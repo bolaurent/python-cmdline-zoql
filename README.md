@@ -1,7 +1,7 @@
 NAME
 ====
 
-**zoql** — accepts Zuora object query language queries and displays results in terminal or in excel.
+**zoql** — accepts Zuora object query language queries (both zoql and export zoql are accepted) and displays results in terminal or in excel.
 
 SYNOPSIS
 ========
@@ -18,6 +18,10 @@ semicolon or by a blank line of entry.
 zoql terminates when it encounters EOF (ctrl-D) or the single character "q" on a line.
 
 zoql supports readline movement commands.
+
+If export zoql is detected, zoql creates, retrieves, deletes, and displays an export file.
+
+See the references below for links to documentation of Zoql at the Zuora knowledge site.
 
 Options
 -------
@@ -81,3 +85,9 @@ KUDOS
 ========
 
 Many thanks to [Distributing a Python command line application](https://gehrcke.de/2014/02/distributing-a-python-command-line-application/)
+
+REFERENCES
+==========
+
+* [ZOQL](https://knowledgecenter.zuora.com/DC_Developers/K_Zuora_Object_Query_Language)
+* [Export ZOQL](https://knowledgecenter.zuora.com/DC_Developers/M_Export_ZOQL)
