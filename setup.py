@@ -33,7 +33,7 @@ setup(
     url = "",
     install_requires=[
         "cmd2",
-        "zuora_restful_python"
+        "zuora_restful_python==0.13-dev0"
     ],
     dependency_links=['http://github.com/bolaurent/zuora_restful_python.git@master#egg=zuora_restful_python-0.13-dev0']
     )
