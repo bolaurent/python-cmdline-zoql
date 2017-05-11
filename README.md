@@ -1,41 +1,83 @@
-python-cmdline-zoql
-========================
+NAME
+====
 
-This is a command line interpreter for Zuora's object query language, zoql.
+**zoql** — accepts Zuora object query language queries and displays results in terminal or in excel.
 
-Usage
------
+SYNOPSIS
+========
 
-Invoke zoql from the prompt of your command interpreter as follows:
+| **zoql** \[**-u**|**--user**] [**--excel**] [**--sandbox**]
 
-```
-        shell> zoql
-```
-    Or:
+DESCRIPTION
+===========
 
-```
-        shell> zoql --excel
-```
+Presents a prompt ("zoql>"), and waits for valid Zuora zoql queries. 
+Queries may be on multiple lines; they are terminated either by a trailing
+semicolon or by a blank line of entry.
 
-    Or:
+zoql terminates when it encounters EOF (ctrl-D) or the single character "q" on a line.
 
-```
-        shell> zoql --sandbox
-```
+zoql supports readline movement commands.
 
-Then enter a valid soql query (one or more lines) followed by a semicolon.
+Options
+-------
 
-The output will either be displayed in your terminal, or sent to Excel.
+-u, --user
+
+:   the username; if this is supplied, zoql will request the password using getpass()
+
+--sandbox
+
+:   use the Zuora apisandbox, rather than the production instance
+
+
+--excel
+
+:   use xlwings to transfer the query results to Excel, rather than displaying in the terminal
 
 
 Credentials
 -----------
 
-Credentials are obtained from ~/.zuora-production-config.json or from ~/.zuora-sandbox-config.json (if you add the argument --sandbox).
+If the --user option is not given, credentials are obtained from ~/.zuora-production-config.json or (if you add the argument --sandbox) from ~/.zuora-sandbox-config.json.
 
 
-Commands
---------
+FILES
+=====
 
-    q: quit
+*~/.zuora-production-config.json*
 
+:   user name and credentials for Zuora production instance
+
+*~/.zuora-sandbox-config.json*
+
+:   user name and credentials for Zuora sandbox instance
+
+The file format is json:
+```
+    {
+      "user":     "me@here.com",
+      "password": "mypassword"
+    }
+```
+
+INSTALL
+=====
+
+pip install  git+git://github.com/bolaurent/python-cmdline-zoql.git
+
+BUGS
+====
+
+See GitHub Issues: <https://github.com/bolaurent/python-cmdline-zoql/issues>
+
+AUTHOR
+======
+
+Bo Laurent <bo@bolaurent.com>
+
+
+KUDOS
+========
+
+Many thanks to [Distributing a Python command line application](https://gehrcke.de/2014/02/distributing-a-python-command-line-application/)

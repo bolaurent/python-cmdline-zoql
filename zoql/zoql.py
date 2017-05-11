@@ -19,6 +19,7 @@ you can query any of the datasources defined by Zuora.
 import os
 import sys
 import argparse
+import getpass
 
 import csv
 import json
@@ -93,6 +94,7 @@ def main():
     parser = argparse.ArgumentParser(description='Interpret Zuora zoql queries')
     parser.add_argument('--excel', action="store_true", default=False)
     parser.add_argument('--sandbox', action="store_true", default=False)
+    parser.add_argument("-u", "--user", type=str)
     args = parser.parse_args()
 
     sys.argv = sys.argv[0:1]
@@ -104,8 +106,14 @@ def main():
         zuora_instance = 'production'
         ZUORA_CONFIGFILE = os.path.expanduser('~') + '/.zuora-production-config.json'
 
-    with open(ZUORA_CONFIGFILE, 'r') as f:
-        zuora_config = json.load(f)
+    if args.user:
+        zuora_config = {}
+        zuora_config['password'] = getpass.getpass('password:')
+        zuora_config['user'] = args.user
+        
+    else:
+        with open(ZUORA_CONFIGFILE, 'r') as f:
+            zuora_config = json.load(f)
 
     Interpreter.zuora_connection = Zuora(zuora_config['user'], zuora_config['password'], zuora_instance)
 
