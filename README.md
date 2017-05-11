@@ -68,7 +68,9 @@ The file format is json:
 INSTALL
 =====
 
-pip install  git+git://github.com/bolaurent/python-cmdline-zoql.git
+```
+pip install  --process-dependency-links git+git://github.com/bolaurent/python-cmdline-zoql.git
+```
 
 BUGS
 ====
