@@ -28,14 +28,16 @@ from cmd2 import Cmd
 from zuora_restful_python.zuora import Zuora
 
 
-zuora_connection = None
 
 def zuora_object_keys(zoura_object):
     if zoura_object:
         return zoura_object.keys()
 
 
-class Interpeter(Cmd):
+class Interpreter(Cmd):
+
+    zuora_connection = None
+    excel = False
 
     prompt = "zoql> "
     intro = "Enter zuora queries (terminated with semicolon)!"
@@ -46,10 +48,10 @@ class Interpeter(Cmd):
     def do_select(self, line):
         try:
             if '.' in line:
-                csv_data = zuora_connection.query_export('select ' + line).split('\n')
+                csv_data = self.zuora_connection.query_export('select ' + line).split('\n')
                 records = [record for record in csv.DictReader(csv_data)]
             else:
-                records = zuora_connection.query_all('select ' + line)
+                records = self.zuora_connection.query_all('select ' + line)
             self.dump_records(records)
         except Exception as ex:
             print('Error: q', repr(ex))
@@ -81,7 +83,7 @@ class Interpeter(Cmd):
 
     def dump_records(self, records):
         if records:
-            if args.excel:
+            if Interpreter.excel:
                 self.dump_to_excel(records)
             else:
                 self.dump_to_stdout(records)
@@ -105,11 +107,13 @@ def main():
     with open(ZUORA_CONFIGFILE, 'r') as f:
         zuora_config = json.load(f)
 
-    zuora_connection = Zuora(zuora_config['user'], zuora_config['password'], zuora_instance)
+    Interpreter.zuora_connection = Zuora(zuora_config['user'], zuora_config['password'], zuora_instance)
 
     if args.excel:
+        Interpret.excel = True
         import pandas as pd
         import xlwings as xw
         wb = xw.Book()
 
-    Interpeter().cmdloop()
+
+    Interpreter().cmdloop()
