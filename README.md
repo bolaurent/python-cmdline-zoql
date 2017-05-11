@@ -89,5 +89,5 @@ Many thanks to [Distributing a Python command line application](https://gehrcke.
 REFERENCES
 ==========
 
-* [ZOQL](https://knowledgecenter.zuora.com/DC_Developers/K_Zuora_Object_Query_Language)
-* [Export ZOQL](https://knowledgecenter.zuora.com/DC_Developers/M_Export_ZOQL)
+* [ZOQL Documentation](https://knowledgecenter.zuora.com/DC_Developers/K_Zuora_Object_Query_Language)
+* [Export ZOQL Documentation](https://knowledgecenter.zuora.com/DC_Developers/M_Export_ZOQL)
