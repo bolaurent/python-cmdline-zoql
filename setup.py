@@ -15,7 +15,7 @@ version = re.search(
     ).group(1)
 
 
-with open("README.rst", "rb") as f:
+with open("README.md", "rb") as f:
     long_descr = f.read().decode("utf-8")
 
 
@@ -32,7 +32,8 @@ setup(
     author_email = "bo@bolaurent.com",
     url = "",
     install_requires=[
-        "cmd2"
+        "cmd2",
+        "zuora_restful_python"
     ],
     dependency_links=['https://github.com/bolaurent/zuora_restful_python/tarball/master']
     )
