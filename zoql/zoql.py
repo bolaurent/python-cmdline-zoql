@@ -119,7 +119,7 @@ def main():
     Interpreter.zuora_connection = Zuora(zuora_config['user'], zuora_config['password'], zuora_instance)
 
     if args.excel:
-        Interpret.excel = True
+        Interpreter.excel = True
         import pandas as pd
         import xlwings as xw
         wb = xw.Book()
