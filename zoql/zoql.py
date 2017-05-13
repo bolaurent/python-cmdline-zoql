@@ -101,6 +101,7 @@ def main():
 
     if args.sandbox:
         zuora_instance = 'sandbox'
+        Interpret.prompt = 'zoql (sandbox)>'
         ZUORA_CONFIGFILE = os.path.expanduser('~') + '/.zuora-sandbox-config.json'
     else:
         zuora_instance = 'production'
